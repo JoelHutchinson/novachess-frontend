@@ -26,7 +26,7 @@ export default function PuzzleBoard(props: PuzzleBoardProps) {
             setGame(new Chess(props.puzzle.fen));
             setPlayedMoves([]);
             setNotPlayedMoves(uciMovesToMoveStack(props.puzzle.moves));
-            setTriggerSolutionMove(true);
+            //setTriggerSolutionMove(true);
         }
     }, [props.puzzle]);
 
@@ -74,7 +74,7 @@ export default function PuzzleBoard(props: PuzzleBoardProps) {
     }
 
 
-    function onDrop(sourceSquare: string, targetSquare: string) {
+    function onDrop(sourceSquare: Square, targetSquare: Square) {
         console.log("Source: " + sourceSquare);
         console.log("Target: " + targetSquare);
 
@@ -145,22 +145,20 @@ export default function PuzzleBoard(props: PuzzleBoardProps) {
     }
 
   return (
-    <div>
-      <div style={{display: "flex", flexDirection: "column"}}>
-        <Chessboard boardWidth={400} position={game.fen()} onPieceDrop={onDrop}/>
-        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-            <button onClick={handleNextMoveClick}>Next Move</button>
-            <div style={{marginTop: "5px", width: "24px", height: "24px", display: "flex"}}>
-                {showCorrectIcon && (<p>Correct, keep going!</p>)}
-                {showIncorrectIcon && (<p>Incorrect, try again.</p>)}
-            </div>
-            <button onClick={props.loadNextPuzzle}>Next Puzzle</button>
+    <div className="inline-flex flex-col">
+      <Chessboard boardWidth={500} position={game.fen()} onPieceDrop={onDrop} />
+      <div className="flex justify-between mt-auto p-4 bg-white">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleNextMoveClick}>
+          Next Move
+        </button>
+        <div className="flex items-center justify-center">
+          {showCorrectIcon && (<p className="text-green-500">Correct, keep going!</p>)}
+          {showIncorrectIcon && (<p className="text-red-500">Incorrect, try again.</p>)}
         </div>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={props.loadNextPuzzle}>
+          Next Puzzle
+        </button>
       </div>
-      {/*
-      <Typography sx={{ p: 2, color: 'text.secondary' }}>Played moves: {playedMoves.join(", ")}</Typography>
-      <Typography sx={{ p: 2, color: 'text.secondary' }}>Not played moves: {notPlayedMoves.join(", ")}</Typography>
-      */}
-    </div>
+   </div>
   );
 }
