@@ -6,10 +6,18 @@ export interface Puzzle {
     popularity: number;
 };
 
-export type Move = {
+export type MoveInput = {
     from: string;
     to: string;
     promotion?: string;
 };
+
+export interface PuzzleApiResponse {
+    entity: {
+        _embedded: {
+            puzzles: Puzzle[];
+        };
+    };
+}
 
 export type PuzzleMoveOutcome = 'correct' | 'incorrect' | 'illegal' | 'error';

@@ -1,5 +1,5 @@
-import PuzzleBoard from "@/app/ui/puzzleboard";
+import PuzzleScreen from "@/app/ui/puzzlescreen";
 
 export default function Page () {
-    return (<PuzzleBoard />);
+    return (<PuzzleScreen />);
 }
