@@ -18,6 +18,6 @@ export interface PuzzleApiResponse {
             puzzles: Puzzle[];
         };
     };
-}
+};
 
 export type PuzzleMoveOutcome = 'correct' | 'incorrect' | 'illegal' | 'error';
