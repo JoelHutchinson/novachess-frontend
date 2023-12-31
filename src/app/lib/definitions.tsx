@@ -21,3 +21,18 @@ export interface PuzzleApiResponse {
 };
 
 export type PuzzleMoveOutcome = 'correct' | 'incorrect' | 'illegal' | 'error';
+
+
+export type Theme = 'dark' | 'light';
+export type Language = 'en' | 'es' | 'fr';
+
+export interface Settings {
+  theme: Theme;
+  language: Language;
+}
+
+export type SettingsContextType = {
+    settings: Settings;
+    toggleTheme: () => void;
+    setLanguage: (language: Language) => void;
+}
