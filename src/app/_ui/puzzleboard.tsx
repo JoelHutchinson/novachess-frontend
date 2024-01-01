@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Chess, Move, Square, Piece } from "chess.js";
 import { Chessboard } from "react-chessboard";
 
-import { Puzzle, MoveInput, PuzzleMoveOutcome } from '@/app/lib/definitions';
+import { Puzzle, MoveInput, PuzzleMoveOutcome } from '@/app/_lib/definitions';
 
 interface PuzzleBoardProps {
     puzzle: Puzzle;

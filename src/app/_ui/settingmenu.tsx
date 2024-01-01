@@ -2,8 +2,8 @@
 
 import { useState, useContext } from 'react';
 
-import { SettingsContext } from '@/app/lib/globalContext'
-import { Language, SettingsContextType } from '@/app/lib/definitions';
+import { SettingsContext } from '@/app/_lib/globalContext'
+import { Language, SettingsContextType } from '@/app/_lib/definitions';
 
 
 const SettingsMenu = () => {

@@ -1,4 +1,4 @@
-import PuzzleScreen from "@/app/ui/puzzlescreen";
+import PuzzleScreen from "@/app/_ui/puzzlescreen";
 
 export default function Page () {
     return (<PuzzleScreen />);

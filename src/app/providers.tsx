@@ -1,6 +1,6 @@
 'use client';
 
-import { SettingsProvider } from '@/app/lib/globalContext';
+import { SettingsProvider } from '@/app/_lib/globalContext';
 
 export default function Providers({
     children,
