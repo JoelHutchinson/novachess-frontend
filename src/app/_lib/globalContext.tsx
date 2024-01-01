@@ -1,7 +1,9 @@
 import {createContext , useState, FC, ReactNode, useEffect} from 'react'
 import {Settings, Theme, Language, SettingsContextType} from './definitions';
 
-// Settings
+// Settings:
+// Note that this is a temporary solution for storing settings information.
+// The downside is that values managed with the context api are not persisted.
 
 const defaultSettings: Settings = {
     theme: 'light',
