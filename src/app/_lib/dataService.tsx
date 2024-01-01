@@ -1,5 +1,6 @@
-export async function fetchPuzzles() {
-    const res = await fetch('https://localhost:8080/puzzles')
+
+export async function fetchPuzzle() {
+    const res = await fetch('http://localhost:8080/api/puzzles')
     // The return value is *not* serialized
    
     if (!res.ok) {
@@ -9,5 +10,5 @@ export async function fetchPuzzles() {
 
     const json = await res.json()
    
-    return json;
+    return json._embedded.puzzles[0];
 }
