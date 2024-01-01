@@ -1,5 +1,5 @@
 import {createContext , useState, FC, ReactNode, useEffect} from 'react'
-import {Settings, Theme, Language, SettingsContextType} from './definitions';
+import {Settings, Language, SettingsContextType} from './definitions';
 
 // Settings:
 // Note that this is a temporary solution for storing settings information.
