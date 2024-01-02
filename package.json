@@ -13,6 +13,7 @@
     "chess.js": "^1.0.0-beta.7",
     "clsx": "^2.1.0",
     "next": "14.0.4",
+    "next-auth": "^5.0.0-beta.4",
     "react": "^18",
     "react-chessboard": "^4.3.4",
     "react-dom": "^18"
