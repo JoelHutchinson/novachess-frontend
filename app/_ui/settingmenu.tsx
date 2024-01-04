@@ -2,7 +2,7 @@
 
 import { useState, useContext } from 'react';
 
-import { SettingsContext } from '@/app/_lib/globalContext'
+import { SettingsContext } from '@/app/_lib/global-context'
 import { Language, SettingsContextType } from '@/app/_lib/definitions';
 
 
