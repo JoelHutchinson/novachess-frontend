@@ -13,7 +13,7 @@ export async function fetchUser(email: string): Promise<User | undefined> {
   }
 
   const json = await res.json();
-
+  
   return json;
 }
 
