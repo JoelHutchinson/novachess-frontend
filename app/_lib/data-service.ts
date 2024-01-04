@@ -17,6 +17,10 @@ export async function fetchUser(email: string): Promise<User | undefined> {
   return json;
 }
 
+export async function createUser(name: string, email: string, password: string) {
+  // TODO
+}
+
 export async function fetchPuzzle(): Promise<Puzzle | undefined> {
     const res = await fetch('http://localhost:8080/api/puzzles')
     // The return value is *not* serialized
