@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useFormState, useFormStatus } from 'react-dom';
-import { authenticate } from '@/app/_lib/actions';
+import { register } from '@/app/_lib/actions';
 
 import {
   AtSymbolIcon,
@@ -12,7 +12,7 @@ import {
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 
 export default function RegisterScreen() {
-  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+  const [errorMessage, dispatch] = useFormState(register, undefined);
 
     return (
     <div className="flex h-screen w-full items-center justify-center bg-gray-900 bg-cover bg-no-repeat" style={{backgroundImage: 'url("/galaxy.png")', backgroundSize: 'cover', backgroundPosition: 'center'}}>
@@ -31,7 +31,7 @@ export default function RegisterScreen() {
                 <input className="rounded-3xl border-none bg-purple-500 bg-opacity-50 px-6 py-2 text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" id="password" type="password" name="password" placeholder="Password" required />
               </div>
               <div className="mb-4 text-lg">
-                <input className="rounded-3xl border-none bg-purple-500 bg-opacity-50 px-6 py-2 text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" id="password" type="password" name="password" placeholder="Repeat password" required />
+                <input className="rounded-3xl border-none bg-purple-500 bg-opacity-50 px-6 py-2 text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" id="password_repeat" type="password" name="password_repeat" placeholder="Repeat password" required />
               </div>
               <div className="mt-8 flex flex-col items-center text-lg">
                 <RegisterButton />

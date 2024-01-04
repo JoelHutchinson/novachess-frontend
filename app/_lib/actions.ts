@@ -5,10 +5,7 @@ import { AuthError } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { fetchUser, createUser } from './data-service';
   
-export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData,
-) {
+export async function authenticate(prevState: string | undefined, formData: FormData) {
   try {
     await signIn('credentials', formData);
   } catch (error) {
@@ -24,16 +21,21 @@ export async function authenticate(
   }
 }
 
-export async function register(formData: FormData) {
-  let name = formData.get('name') as string;
+export async function register(prevState: string | undefined, formData: FormData) {
   let email = formData.get('email') as string;
   let password = formData.get('password') as string;
+  let repeatPassword = formData.get('repeat_password') as string;
+
+  if (password !== repeatPassword) {
+    return 'Passwords do not match';
+  }
+
   let user = await fetchUser(email);
 
   if (user) {
     return 'User already exists';
   } else {
-    await createUser(name, email, password);
+    await createUser(email, password);
     redirect('/login');
   }
 }
