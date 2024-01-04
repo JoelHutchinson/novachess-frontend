@@ -29,10 +29,17 @@ export type Language = 'en' | 'es' | 'fr';
 export interface Settings {
   theme: Theme;
   language: Language;
-}
+};
 
 export type SettingsContextType = {
     settings: Settings;
     toggleTheme: () => void;
     setLanguage: (language: Language) => void;
-}
+};
+
+export type User = {
+    id: string;
+    name: string;
+    email: string;
+    password: string;
+};
