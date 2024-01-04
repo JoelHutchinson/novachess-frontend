@@ -25,6 +25,7 @@ export async function authenticate(
 }
 
 export async function register(formData: FormData) {
+  let name = formData.get('name') as string;
   let email = formData.get('email') as string;
   let password = formData.get('password') as string;
   let user = await fetchUser(email);
@@ -32,7 +33,7 @@ export async function register(formData: FormData) {
   if (user) {
     return 'User already exists';
   } else {
-    await createUser(email, password);
+    await createUser(name, email, password);
     redirect('/login');
   }
 }

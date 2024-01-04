@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '@/app/_lib/actions';
 
-
 import {
   AtSymbolIcon,
   KeyIcon,
@@ -12,7 +11,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
 
     return (
@@ -23,7 +22,7 @@ export default function LoginScreen() {
             <div className="mb-8 flex flex-col items-center">
               <img src="./galaxy-pawn.png" width="50" alt="" srcSet="" />
               <h1 className="mb-2 mt-2 text-2xl">Welcome to Novachess</h1>
-              <span className="text-gray-300">Enter Login Details</span>
+              <span className="text-gray-300">Enter Registration Details</span>
             </div>
               <div className="mb-4 text-lg">
                 <input className="rounded-3xl border-none bg-purple-500 bg-opacity-50 px-6 py-2 text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" id="email" type="email" name="email" placeholder="Email" required />
@@ -31,8 +30,11 @@ export default function LoginScreen() {
               <div className="mb-4 text-lg">
                 <input className="rounded-3xl border-none bg-purple-500 bg-opacity-50 px-6 py-2 text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" id="password" type="password" name="password" placeholder="Password" required />
               </div>
-              <div className="mt-8 flex flex-col justify-center items-center text-lg">
-                <LoginButton />
+              <div className="mb-4 text-lg">
+                <input className="rounded-3xl border-none bg-purple-500 bg-opacity-50 px-6 py-2 text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" id="password" type="password" name="password" placeholder="Repeat password" required />
+              </div>
+              <div className="mt-8 flex flex-col items-center text-lg">
+                <RegisterButton />
                 {errorMessage && (
                   <div
                     className="mt-2 flex items-center space-x-1"
@@ -45,11 +47,10 @@ export default function LoginScreen() {
                 )}
 
                 <p className="text-center text-sm mt-4">
-                    {"Don't have an account? "}
-                    <Link href="/register" className="font-semibold text-gray-500 transition-colors duration-300 hover:text-yellow-600">
-                    Sign up
+                    {"Already have an account? "}
+                    <Link href="/login" className="font-semibold text-gray-500 transition-colors duration-300 hover:text-yellow-600">
+                    Sign in
                     </Link>
-                    {' for free.'}
                 </p>
               </div>
           </div>
@@ -59,7 +60,7 @@ export default function LoginScreen() {
     );
 }
 
-function LoginButton() {
+function RegisterButton() {
   const { pending } = useFormStatus();
  
   return (
@@ -67,7 +68,7 @@ function LoginButton() {
       className="rounded-3xl bg-purple-500 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-yellow-600"
       aria-disabled={pending}
       type='submit'>
-      Log in 
+      Register 
 
     </button>
   );
