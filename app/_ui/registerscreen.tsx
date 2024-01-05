@@ -24,6 +24,9 @@ export default function RegisterScreen() {
               <h1 className="mb-2 mt-2 text-2xl">Welcome to Novachess</h1>
               <span className="text-gray-300">Enter Registration Details</span>
             </div>
+                <div className="mb-4 text-lg">
+                <input className="rounded-3xl border-none bg-purple-500 bg-opacity-50 px-6 py-2 text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" id="username" type="text" name="username" placeholder="Username" required />
+              </div>
               <div className="mb-4 text-lg">
                 <input className="rounded-3xl border-none bg-purple-500 bg-opacity-50 px-6 py-2 text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" id="email" type="email" name="email" placeholder="Email" required />
               </div>

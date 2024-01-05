@@ -4,11 +4,13 @@ export async function fetchUser(email: string): Promise<User | undefined> {
   // Encode the email to ensure it's safe to include in a URL
   const encodedEmail = encodeURIComponent(email);
 
-  // Updated URL to use path variable
   const res = await fetch(`http://localhost:8080/api/users/${encodedEmail}`);
 
+  if (res.status === 404) {
+    return undefined; // User does not exist
+  }
+
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data.');
   }
 
@@ -18,7 +20,22 @@ export async function fetchUser(email: string): Promise<User | undefined> {
 }
 
 export async function createUser(name: string, email: string, password: string) {
-  // TODO
+  const res = await fetch('http://localhost:8080/api/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ name, email, password }),
+  });
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to create user.');
+  }
+
+  const json = await res.json();
+
+  return json;
 }
 
 export async function fetchPuzzle(): Promise<Puzzle | undefined> {
