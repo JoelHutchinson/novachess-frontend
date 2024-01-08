@@ -1,6 +1,7 @@
 'use client';
 
 import { SettingsProvider } from '@/app/_lib/global-context';
+import { SessionProvider } from 'next-auth/react';
 
 export default function Providers({
     children,
@@ -8,8 +9,8 @@ export default function Providers({
     children: React.ReactNode
   }) {
     return (
-    <SettingsProvider>
-      {children}
-    </SettingsProvider>
+      <SettingsProvider>
+        {children}
+      </SettingsProvider>
   );
 }

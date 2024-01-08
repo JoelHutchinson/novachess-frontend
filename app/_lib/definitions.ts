@@ -43,3 +43,11 @@ export type User = {
     email: string;
     password: string;
 };
+
+export interface SolveAttempt {
+    id?: string;
+    user: User;
+    puzzle: Puzzle;
+    attemptTime: string; // ISO 8601 format
+    success: boolean;
+};

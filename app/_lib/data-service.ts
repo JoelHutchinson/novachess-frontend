@@ -1,4 +1,5 @@
 import { User, Puzzle, SolveAttempt } from "./definitions";
+import { genSaltSync, hashSync } from 'bcrypt-ts';
 
 export async function fetchUser(email: string): Promise<User | undefined> {
   // Encode the email to ensure it's safe to include in a URL
@@ -19,7 +20,10 @@ export async function fetchUser(email: string): Promise<User | undefined> {
   return json;
 }
 
-export async function createUser(name: string, email: string, password: string) {
+export async function createUser(name: string, email: string, plainPassword: string) {
+  let salt = genSaltSync(10);
+  let password = hashSync(plainPassword, salt);
+
   const res = await fetch('http://localhost:8080/api/users', {
     method: 'POST',
     headers: {

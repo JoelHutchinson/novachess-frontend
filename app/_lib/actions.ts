@@ -4,7 +4,7 @@ import { signIn } from '@/app/auth';
 import { AuthError } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { fetchUser, createUser } from './data-service';
-  
+
 export async function authenticate(prevState: string | undefined, formData: FormData) {
   try {
     await signIn('credentials', formData);
@@ -22,7 +22,7 @@ export async function authenticate(prevState: string | undefined, formData: Form
 }
 
 export async function register(prevState: string | undefined, formData: FormData) {
-  let name = formData.get('name') as string;
+  let name = formData.get('username') as string;
   let email = formData.get('email') as string;
   let password = formData.get('password') as string;
   let repeatPassword = formData.get('password_repeat') as string;
