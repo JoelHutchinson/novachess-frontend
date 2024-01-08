@@ -1,4 +1,4 @@
-import { User, Puzzle } from "./definitions";
+import { User, Puzzle, SolveAttempt } from "./definitions";
 
 export async function fetchUser(email: string): Promise<User | undefined> {
   // Encode the email to ensure it's safe to include in a URL
@@ -50,4 +50,33 @@ export async function fetchPuzzle(): Promise<Puzzle | undefined> {
     const json = await res.json()
    
     return json._embedded.puzzles[0];
+}
+
+// Solve attempts
+export async function fetchSolveAttempts(): Promise<SolveAttempt[]> {
+  const res = await fetch('http://localhost:8080/api/solveattempts');
+
+  if (!res.ok) {
+      throw new Error('Failed to fetch solve attempts.');
+  }
+
+  const json = await res.json();
+  return json._embedded.solveAttempts;
+}
+
+export async function postSolveAttempt(attempt: SolveAttempt): Promise<SolveAttempt> {
+  const res = await fetch('http://localhost:8080/api/solveattempts', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(attempt),
+  });
+
+  if (!res.ok) {
+      throw new Error('Failed to post solve attempt.');
+  }
+
+  const json = await res.json();
+  return json;
 }
