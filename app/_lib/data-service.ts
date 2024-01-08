@@ -50,16 +50,17 @@ export async function fetchUserPuzzle(email: string): Promise<Puzzle | undefined
 
   // Fetch user data
   const userRes = await fetch(`http://localhost:8080/api/users/${encodedEmail}`);
-  
+
   if (!userRes.ok) {
     // Handle errors in fetching user data
     throw new Error('Failed to fetch user data.');
   }
 
   const userJson = await userRes.json();
-  
+  console.log(userJson);
+
   // Check if user has a current puzzle link
-  const currentPuzzleLink = userJson._embedded?.users[0]._links?.currentPuzzle?.href;
+  const currentPuzzleLink = userJson._links?.currentPuzzle?.href;
   if (!currentPuzzleLink) {
     return undefined; // No current puzzle for this user
   }
@@ -73,6 +74,7 @@ export async function fetchUserPuzzle(email: string): Promise<Puzzle | undefined
   }
 
   const puzzleJson = await puzzleRes.json();
+  console.log(puzzleJson);
 
   return puzzleJson;
 }
