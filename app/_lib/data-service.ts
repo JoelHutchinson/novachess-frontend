@@ -24,12 +24,14 @@ export async function createUser(name: string, email: string, plainPassword: str
   let salt = genSaltSync(10);
   let password = hashSync(plainPassword, salt);
 
+  let puzzleRating = 1000; // Default rating
+
   const res = await fetch('http://localhost:8080/api/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ name, email, password }),
+    body: JSON.stringify({ name, email, password, puzzleRating }),
   });
 
   if (!res.ok) {
@@ -42,8 +44,8 @@ export async function createUser(name: string, email: string, plainPassword: str
   return json;
 }
 
-export async function fetchPuzzle(): Promise<Puzzle | undefined> {
-    const res = await fetch('http://localhost:8080/api/puzzles')
+export async function fetchUserPuzzle(email: string): Promise<Puzzle | undefined> {
+    const res = await fetch('http://localhost:8080/api/users')
     // The return value is *not* serialized
    
     if (!res.ok) {
