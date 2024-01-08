@@ -13,6 +13,9 @@ export const authConfig = {
       let isLoggedIn = !!auth?.user;
 
       if (!isLoggedIn) {
+        if (nextUrl.pathname.startsWith('/register')) {
+          return true
+        };
         return false; // Redirect unauthenticated users to login page
       }
 

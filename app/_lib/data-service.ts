@@ -45,18 +45,38 @@ export async function createUser(name: string, email: string, plainPassword: str
 }
 
 export async function fetchUserPuzzle(email: string): Promise<Puzzle | undefined> {
-    const res = await fetch('http://localhost:8080/api/users')
-    // The return value is *not* serialized
-   
-    if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch data.')
-    }
+  // Encode the email to ensure it's safe to include in a URL
+  const encodedEmail = encodeURIComponent(email);
 
-    const json = await res.json()
-   
-    return json._embedded.puzzles[0];
+  // Fetch user data
+  const userRes = await fetch(`http://localhost:8080/api/users/${encodedEmail}`);
+  
+  if (!userRes.ok) {
+    // Handle errors in fetching user data
+    throw new Error('Failed to fetch user data.');
+  }
+
+  const userJson = await userRes.json();
+  
+  // Check if user has a current puzzle link
+  const currentPuzzleLink = userJson._embedded?.users[0]._links?.currentPuzzle?.href;
+  if (!currentPuzzleLink) {
+    return undefined; // No current puzzle for this user
+  }
+
+  // Fetch the current puzzle using the HATEOAS link
+  const puzzleRes = await fetch(currentPuzzleLink);
+
+  if (!puzzleRes.ok) {
+    // Handle errors in fetching puzzle data
+    throw new Error('Failed to fetch current puzzle.');
+  }
+
+  const puzzleJson = await puzzleRes.json();
+
+  return puzzleJson;
 }
+
 
 // Solve attempts
 export async function fetchSolveAttempts(): Promise<SolveAttempt[]> {
