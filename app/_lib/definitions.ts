@@ -47,8 +47,8 @@ export type User = {
 
 export interface SolveAttempt {
     id?: string;
-    user: User;
-    puzzle: Puzzle;
+    userId: string;
+    puzzleId: string;
     attemptTime: string; // ISO 8601 format
     success: boolean;
 };

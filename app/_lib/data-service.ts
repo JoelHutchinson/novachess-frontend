@@ -57,7 +57,6 @@ export async function fetchUserPuzzle(email: string): Promise<Puzzle | undefined
   }
 
   const userJson = await userRes.json();
-  console.log(userJson);
 
   // Check if user has a current puzzle link
   const currentPuzzleLink = userJson._links?.currentPuzzle?.href;
@@ -74,7 +73,6 @@ export async function fetchUserPuzzle(email: string): Promise<Puzzle | undefined
   }
 
   const puzzleJson = await puzzleRes.json();
-  console.log(puzzleJson);
 
   return puzzleJson;
 }

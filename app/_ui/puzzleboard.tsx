@@ -9,6 +9,7 @@ import { Puzzle, MoveInput, PuzzleMoveOutcome } from '@/app/_lib/definitions';
 interface PuzzleBoardProps {
     puzzle: Puzzle;
     loadNextPuzzle: () => void;
+    logSolveAttempt: (isCorrect: boolean) => void;
 };
 
 export default function PuzzleBoard(props: PuzzleBoardProps) {
@@ -26,7 +27,7 @@ export default function PuzzleBoard(props: PuzzleBoardProps) {
             setGame(new Chess(props.puzzle.fen));
             setPlayedMoves([]);
             setNotPlayedMoves(uciMovesToMoveStack(props.puzzle.moves));
-            //setTriggerSolutionMove(true);
+            setTriggerSolutionMove(true);
         }
     }, [props.puzzle]);
 
@@ -99,6 +100,8 @@ export default function PuzzleBoard(props: PuzzleBoardProps) {
                 // Display the incorrect move icon.
                 setShowIncorrectIcon(true);
                 setTimeout(() => setShowIncorrectIcon(false), 1000); // Hide the icon after a delay
+
+                props.logSolveAttempt(false); // Log the failed solve attempt.
                 break;
                 
             case ('illegal'):
@@ -137,6 +140,7 @@ export default function PuzzleBoard(props: PuzzleBoardProps) {
 
     function makeNextSolutionMove() {
         if (notPlayedMoves.length === 0) {
+            props.logSolveAttempt(true); // Log the successful solve attempt.
             props.loadNextPuzzle();
         }
         else{
