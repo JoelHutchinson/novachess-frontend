@@ -1,10 +1,30 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Novachess Front-end: A Chess Training Web Application
+Welcome to the `Novachess` front-end repository. Novachess is a full-stack web application designed to offer a comprehensive suite of tools for chess training and tournament preparation. This repository contains the implementation of the front-end portion of the app. This document will guide you through the features, architecture, and steps to build and run the project.
 
-First, run the development server:
+## Overview
+Novachess integrates modern web technologies and chess-specific packages to deliver an practical training tool for chess enthusiasts. The application includes:
 
-```bash
+- A dynamic and responsive chessboard interface.
+- Tool for solving chess puzzles.
+
+## Stack
+- NextJS ▲
+- NextAuth
+- react-chessboard and chess.js
+- Tailwind CSS 🐦
+
+## Prerequisites
+Before building and running the project, ensure you have the following installed:
+
+- Node.js and npm
+
+
+## Build and Run
+To run on the development server:
+- npm install
+```
 npm run dev
 # or
 yarn dev
@@ -14,23 +34,8 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contribution
+Contributions to Novachess are welcome! If you're interested in enhancing the application or fixing bugs, please fork the repository, make your changes, and create a pull request.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+This project is licensed under the MIT License.

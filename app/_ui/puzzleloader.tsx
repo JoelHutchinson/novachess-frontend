@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { getSession } from "next-auth/react";
-import { fetchUserPuzzle } from "@/app/_lib/data-service";
-import { Puzzle, SolveAttempt } from "@/app/_lib/definitions";
+import { fetchUserPuzzle, postSolveAttempt } from "@/app/_lib/data-service";
+import { Puzzle } from "@/app/_lib/definitions";
 import PuzzleBoard from "./puzzleboard";
 import { Session } from "next-auth";
 

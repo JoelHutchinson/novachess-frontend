@@ -1,4 +1,4 @@
-import { User, Puzzle, SolveAttempt } from "./definitions";
+import { User, Puzzle } from "./definitions";
 import { genSaltSync, hashSync } from 'bcrypt-ts';
 
 export async function fetchUser(email: string): Promise<User | undefined> {
@@ -79,19 +79,15 @@ export async function fetchUserPuzzle(email: string): Promise<Puzzle | undefined
 
 
 // Solve attempts
-export async function fetchSolveAttempts(): Promise<SolveAttempt[]> {
-  const res = await fetch('http://localhost:8080/api/solveattempts');
+export async function postSolveAttempt(userEmail: string, isCorrect: boolean): Promise<User | undefined> {
+  // Encode the email to ensure it's safe to include in a URL
+  const encodedEmail = encodeURIComponent(userEmail);
 
-  if (!res.ok) {
-      throw new Error('Failed to fetch solve attempts.');
-  }
+  const attempt = {
+    isCorrect
+  };
 
-  const json = await res.json();
-  return json._embedded.solveAttempts;
-}
-
-export async function postSolveAttempt(attempt: SolveAttempt): Promise<SolveAttempt> {
-  const res = await fetch('http://localhost:8080/api/solveattempts', {
+  const res = await fetch(`http://localhost:8080/api/users/${encodedEmail}/logSolve`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
