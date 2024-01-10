@@ -6,6 +6,7 @@ Welcome to the `Novachess` front-end repository. Novachess is a full-stack web a
 ## Overview
 Novachess integrates modern web technologies and chess-specific packages to deliver an practical training tool for chess enthusiasts. The application includes:
 
+- Login / Registration
 - A dynamic and responsive chessboard interface.
 - Tool for solving chess puzzles.
 
