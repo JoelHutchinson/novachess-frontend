@@ -16,6 +16,7 @@ export default function PuzzleLoader(props: PuzzleLoaderProps) {
 
     useEffect(() => {
         async function load() {
+            console.log(props.session.user);
             if (props.session?.user?.email) {  
                 loadNextPuzzle(props.session.user.email);
             }
