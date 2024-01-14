@@ -48,6 +48,7 @@ export default function PuzzleLoader(props: PuzzleLoaderProps) {
     return (
         <PuzzleBoard
             puzzle={{
+                id: currentPuzzle.id,
                 fen: currentPuzzle.fen,
                 moves: currentPuzzle.moves,
                 rating: currentPuzzle.rating,

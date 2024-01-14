@@ -1,5 +1,5 @@
 export interface Puzzle {
-    id?: string;
+    id: string;
     fen: string;
     moves: string;
     rating: number;
@@ -39,7 +39,7 @@ export type SettingsContextType = {
 
 export type User = {
     id: string;
-    name: string;
+    username: string;
     email: string;
     password: string;
     puzzleRating: number

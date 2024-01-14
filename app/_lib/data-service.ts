@@ -1,11 +1,8 @@
 import { User, Puzzle } from "./definitions";
 import { genSaltSync, hashSync } from 'bcrypt-ts';
 
-export async function fetchUser(email: string): Promise<User | undefined> {
-  // Encode the email to ensure it's safe to include in a URL
-  const encodedEmail = encodeURIComponent(email);
-
-  const res = await fetch(`http://localhost:8080/api/users/${encodedEmail}`);
+export async function fetchUser(username: string): Promise<User | undefined> {
+  const res = await fetch(`http://localhost:8080/api/users/${username}`);
 
   if (res.status === 404) {
     return undefined; // User does not exist
@@ -20,7 +17,7 @@ export async function fetchUser(email: string): Promise<User | undefined> {
   return json;
 }
 
-export async function createUser(name: string, email: string, plainPassword: string) {
+export async function createUser(username: string, email: string, plainPassword: string) {
   let salt = genSaltSync(10);
   let password = hashSync(plainPassword, salt);
 
@@ -31,7 +28,7 @@ export async function createUser(name: string, email: string, plainPassword: str
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ name, email, password, puzzleRating }),
+    body: JSON.stringify({ username, email, password, puzzleRating }),
   });
 
   if (!res.ok) {

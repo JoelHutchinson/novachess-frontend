@@ -22,7 +22,7 @@ export async function authenticate(prevState: string | undefined, formData: Form
 }
 
 export async function register(prevState: string | undefined, formData: FormData) {
-  let name = formData.get('username') as string;
+  let username = formData.get('username') as string;
   let email = formData.get('email') as string;
   let password = formData.get('password') as string;
   let repeatPassword = formData.get('password_repeat') as string;
@@ -36,7 +36,7 @@ export async function register(prevState: string | undefined, formData: FormData
   if (user) {
     return 'User already exists';
   } else {
-    await createUser(name, email, password);
+    await createUser(username, email, password);
     redirect('/login');
   }
 }

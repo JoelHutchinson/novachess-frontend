@@ -17,12 +17,12 @@ export const {
       Credentials({
         async authorize(credentials) {
             const parsedCredentials = z
-            .object({ email: z.string().email(), password: z.string().min(6) })
+            .object({ username: z.string(), password: z.string().min(6) })
             .safeParse(credentials);
    
           if (parsedCredentials.success) {
-            const { email, password } = parsedCredentials.data;
-            const user = await fetchUser(email);
+            const { username, password } = parsedCredentials.data;
+            const user = await fetchUser(username);
             if (!user) return null;
 
             let passwordsMatch = false;

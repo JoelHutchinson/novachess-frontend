@@ -26,7 +26,7 @@ export default function LoginScreen() {
               <span className="text-gray-300">Enter Login Details</span>
             </div>
               <div className="mb-4 text-lg">
-                <input className="rounded-3xl border-none bg-purple-500 bg-opacity-50 px-6 py-2 text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" id="email" type="email" name="email" placeholder="Email" required />
+                <input className="rounded-3xl border-none bg-purple-500 bg-opacity-50 px-6 py-2 text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" id="username" type="username" name="username" placeholder="Username" required />
               </div>
               <div className="mb-4 text-lg">
                 <input className="rounded-3xl border-none bg-purple-500 bg-opacity-50 px-6 py-2 text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" id="password" type="password" name="password" placeholder="Password" required />
