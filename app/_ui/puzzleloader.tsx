@@ -3,12 +3,12 @@
 import React, { useState, useEffect } from "react";
 
 import { fetchUserPuzzle, postSolveAttempt } from "@/app/_lib/data-service";
-import { Puzzle } from "@/app/_lib/definitions";
+import { Puzzle, User } from "@/app/_lib/definitions";
 import PuzzleBoard from "./puzzleboard";
 import { Session } from "next-auth";
 
 interface PuzzleLoaderProps {
-    session: Session;
+    user: User;
 };
 
 export default function PuzzleLoader(props: PuzzleLoaderProps) {
@@ -16,18 +16,17 @@ export default function PuzzleLoader(props: PuzzleLoaderProps) {
 
     useEffect(() => {
         async function load() {
-            console.log(props.session.user);
-            if (props.session?.user?.email) {  
-                loadNextPuzzle(props.session.user.email);
+            if (props.user) {
+                loadNextPuzzle(props.user.username);
             }
         }
 
         load();
     }, []);
 
-    const loadNextPuzzle = async (email: string) => {
+    const loadNextPuzzle = async (username: string) => {
         try {
-            const nextPuzzle = await fetchUserPuzzle(email);
+            const nextPuzzle = await fetchUserPuzzle(username);
             setCurrentPuzzle(nextPuzzle);
         } catch (error) {
             console.error("Error fetching next puzzle:", error);
@@ -55,7 +54,7 @@ export default function PuzzleLoader(props: PuzzleLoaderProps) {
                 rating: currentPuzzle.rating,
                 popularity: currentPuzzle.popularity
             }}
-            loadNextPuzzle={() => props.session?.user?.email && loadNextPuzzle(props.session.user.email)}
+            loadNextPuzzle={() => props.user?.email && loadNextPuzzle(props.user.email)}
             logSolveAttempt = {(isCorrect: boolean) => logSolveAttempt(isCorrect)}
         />
     );

@@ -41,12 +41,9 @@ export async function createUser(username: string, email: string, plainPassword:
   return json;
 }
 
-export async function fetchUserPuzzle(email: string): Promise<Puzzle | undefined> {
-  // Encode the email to ensure it's safe to include in a URL
-  const encodedEmail = encodeURIComponent(email);
-
+export async function fetchUserPuzzle(username: string): Promise<Puzzle | undefined> {
   // Fetch user data
-  const userRes = await fetch(`http://localhost:8080/api/users/${encodedEmail}`);
+  const userRes = await fetch(`http://localhost:8080/api/users/${username}`);
 
   if (!userRes.ok) {
     // Handle errors in fetching user data

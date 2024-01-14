@@ -7,7 +7,7 @@ export default async function PuzzleScreen() {
     const session = await auth();
 
     return (
-        session ?
-        (<PuzzleLoader session={session} />) : <div>Loading</div>
+        session?.user ?
+        (<PuzzleLoader user={session.user} />) : <div>Loading</div>
     );
 }
