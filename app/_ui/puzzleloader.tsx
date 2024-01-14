@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { getSession } from "next-auth/react";
+
 import { fetchUserPuzzle, postSolveAttempt } from "@/app/_lib/data-service";
 import { Puzzle } from "@/app/_lib/definitions";
 import PuzzleBoard from "./puzzleboard";
@@ -16,7 +16,7 @@ export default function PuzzleLoader(props: PuzzleLoaderProps) {
 
     useEffect(() => {
         async function load() {
-            if (props.session?.user?.email) {
+            if (props.session?.user?.email) {  
                 loadNextPuzzle(props.session.user.email);
             }
         }
